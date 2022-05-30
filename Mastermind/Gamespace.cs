@@ -20,7 +20,8 @@ namespace Mastermind
         int guesses = 0;
         int[] codeCorrect = new int[4];
         int[] codeGuess = { 0, 0, 0, 0 };
-        int[] codeTest = new int[4];
+        int[] testCodeResult = new int[4];
+        int[] testCodeGuess = new int[4];
 
         Pen penBlack = new Pen(Color.Black);
         Pen penWhite = new Pen(Color.Black);
@@ -98,10 +99,15 @@ namespace Mastermind
 
             currentPin = 0;
 
-            codeTest[0] = codeCorrect[0];
-            codeTest[1] = codeCorrect[1];
-            codeTest[2] = codeCorrect[2];
-            codeTest[3] = codeCorrect[3];
+            testCodeResult[0] = codeCorrect[0];
+            testCodeResult[1] = codeCorrect[1];
+            testCodeResult[2] = codeCorrect[2];
+            testCodeResult[3] = codeCorrect[3];
+
+            testCodeGuess[0] = codeGuess[0];
+            testCodeGuess[1] = codeGuess[1];
+            testCodeGuess[2] = codeGuess[2];
+            testCodeGuess[3] = codeGuess[3];
 
             int correctPins = 0;
             int correctColors = 0;
@@ -123,11 +129,12 @@ namespace Mastermind
                 }
                 for (int currentResult = 0; currentResult < 4; currentResult++)
                 {
-                    if (codeTest[currentResult] == codeGuess[currentResult])
+                    if (testCodeResult[currentResult] == testCodeGuess[currentResult])
                     {
+                        testCodeResult[currentResult] = 0;
+                        testCodeGuess[currentResult] = 5;
                         g.DrawEllipse(penBlack, resultMatrix[guesses, correctPins]);
                         g.FillEllipse(brushBlack, resultMatrix[guesses, correctPins]);
-                        codeTest[currentResult] = 0;
                         correctPins++;
                         correctColors++;
 
@@ -137,10 +144,11 @@ namespace Mastermind
                 {
                     for (int temp = 0; temp < 4; temp++)
                     {
-                        if (codeTest[temp] == codeGuess[currentResult])
+                        if (testCodeResult[temp] == testCodeGuess[currentResult])
                         {
+                            testCodeResult[temp] = 0;
+                            testCodeGuess[currentResult] = 5;
                             g.DrawEllipse(penBlack, resultMatrix[guesses, correctColors]);
-                            codeTest[temp] = 0;
                             correctColors++;
                         }
                     }
