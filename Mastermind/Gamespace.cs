@@ -20,7 +20,7 @@ namespace Mastermind
         int guesses = 0;
         int[] codeCorrect = new int[4];
         int[] codeGuess = { 0, 0, 0, 0 };
-        int[] testCodeResult = new int[4];
+        int[] testCodeCorrect = new int[4];
         int[] testCodeGuess = new int[4];
 
         Pen penBlack = new Pen(Color.Black);
@@ -60,11 +60,16 @@ namespace Mastermind
 
         //Randomises a new code to guess and removes the "Press New Game" message
         private void generateCode()
-        {
+        { /*
             codeCorrect[0] = rand.Next(1, 6);
             codeCorrect[1] = rand.Next(1, 6);
             codeCorrect[2] = rand.Next(1, 6);
-            codeCorrect[3] = rand.Next(1, 6);
+            codeCorrect[3] = rand.Next(1, 6); */
+
+            codeCorrect[0] = 2;
+            codeCorrect[1] = 2;
+            codeCorrect[2] = 3;
+            codeCorrect[3] = 2;
 
             labelInformation.Text = "";
 
@@ -98,10 +103,10 @@ namespace Mastermind
         {
             Graphics g = this.CreateGraphics();
 
-            testCodeResult[0] = codeCorrect[0];
-            testCodeResult[1] = codeCorrect[1];
-            testCodeResult[2] = codeCorrect[2];
-            testCodeResult[3] = codeCorrect[3];
+            testCodeCorrect[0] = codeCorrect[0];
+            testCodeCorrect[1] = codeCorrect[1];
+            testCodeCorrect[2] = codeCorrect[2];
+            testCodeCorrect[3] = codeCorrect[3];
 
             testCodeGuess[0] = codeGuess[0];
             testCodeGuess[1] = codeGuess[1];
@@ -126,30 +131,28 @@ namespace Mastermind
                         case 6: g.FillEllipse(brushBlack, guessesMatrix[guesses, column]); break;
                     }
                 }
-                for (int currentResult = 0; currentResult < 4; currentResult++)
+                for (int counter = 0; counter < 4; counter++)
                 { // Checks whether a color has been guessed in the correct hole
-                    if (testCodeResult[currentResult] == testCodeGuess[currentResult])
+                    if (codeCorrect[counter] == codeGuess[counter])
                     {
-                        testCodeResult[currentResult] = 0;
-                        testCodeGuess[currentResult] = 5;
-                        g.DrawEllipse(penBlack, resultMatrix[guesses, correctPins]);
-                        g.FillEllipse(brushBlack, resultMatrix[guesses, correctPins]);
                         correctPins++;
                         correctColors++;
-
-                    }
-                }
-                for (int currentResult = 0; currentResult < 4; currentResult++)
-                { // Checks whether a color has been guessed in an incorrect hole
-                    for (int temp = 0; temp < 4; temp++)
-                    { //Currently has a bug where a single color can produce both a white and black pin in situations where it occurs multiple times
-                        if (testCodeResult[temp] == testCodeGuess[currentResult])
+                    } //Checks whether a correct color has been guessed in an incorrect hole
+                    else for (int counter2 = 0; counter2 < 4; counter2++)
                         {
-                            testCodeResult[temp] = 0;
-                            testCodeGuess[currentResult] = 5;
-                            g.DrawEllipse(penBlack, resultMatrix[guesses, correctColors]);
-                            correctColors++;
+                            if ((testCodeCorrect[counter] == testCodeGuess[counter2]) & !(codeCorrect[counter2] == codeGuess[counter2]))
+                            {
+                                testCodeGuess[counter2] = 0;
+                                correctColors++;
+                            }
                         }
+                }
+                for (int results = 0; results < correctColors; results++)
+                {
+                    g.DrawEllipse(penBlack, resultMatrix[guesses, results]);
+                    if(results < correctPins)
+                    {
+                        g.FillEllipse(brushBlack, resultMatrix[guesses, results]);
                     }
                 } 
                 // Ends the game if the correct sequence has been guessed
