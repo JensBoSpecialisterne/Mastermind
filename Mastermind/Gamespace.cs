@@ -36,7 +36,7 @@ namespace Mastermind
         Rectangle[,] guessesMatrix = new Rectangle[12, 4];
         Rectangle[,] resultMatrix = new Rectangle[12, 4];
 
-        //Sets up the "gameboard"
+        //Sets up the "gameboard", drawing the empty holes to guess, and setting up the framework for the reply pins
         private void generateBoard()
         {
             Graphics g = this.CreateGraphics();
@@ -58,7 +58,7 @@ namespace Mastermind
             }
         }
 
-        //Randomises a new code to guess
+        //Randomises a new code to guess and removes the "Press New Game" message
         private void generateCode()
         {
             codeCorrect[0] = rand.Next(1, 6);
@@ -69,7 +69,7 @@ namespace Mastermind
             labelInformation.Text = "";
 
             // To help debugging
-            // labelInformation.Text = codeCorrect[0] + " " + codeCorrect[1] + " " + codeCorrect[2] + " " + codeCorrect[3];
+             labelInformation.Text = codeCorrect[0] + " " + codeCorrect[1] + " " + codeCorrect[2] + " " + codeCorrect[3];
         }
 
         public Gamespace()
@@ -82,6 +82,7 @@ namespace Mastermind
 
         }
 
+        // Clears the filled circles from last time, then generates a new board, code to guess and resets guessers progress
         private void newGameButton_Click(object sender, EventArgs e)
         {
             Graphics g = this.CreateGraphics();
@@ -97,8 +98,6 @@ namespace Mastermind
         {
             Graphics g = this.CreateGraphics();
 
-            currentPin = 0;
-
             testCodeResult[0] = codeCorrect[0];
             testCodeResult[1] = codeCorrect[1];
             testCodeResult[2] = codeCorrect[2];
@@ -112,10 +111,10 @@ namespace Mastermind
             int correctPins = 0;
             int correctColors = 0;
 
-            if (!codeGuess.Contains(0))
+            if (!codeGuess.Contains(0)) // Only allows a guess to be made if a color has been selected for all four holes
             {
                 for (int column = 0; column < 4; column++)
-                {
+                { // Fills out the next row with circles in the guessed colors
                     guessesMatrix[guesses, column] = new Rectangle((5 + column * 35), (5 + guesses * 35), 30, 30);
                     switch (codeGuess[column])
                     {
@@ -128,7 +127,7 @@ namespace Mastermind
                     }
                 }
                 for (int currentResult = 0; currentResult < 4; currentResult++)
-                {
+                { // Checks whether a color has been guessed in the correct hole
                     if (testCodeResult[currentResult] == testCodeGuess[currentResult])
                     {
                         testCodeResult[currentResult] = 0;
@@ -141,9 +140,9 @@ namespace Mastermind
                     }
                 }
                 for (int currentResult = 0; currentResult < 4; currentResult++)
-                {
+                { // Checks whether a color has been guessed in an incorrect hole
                     for (int temp = 0; temp < 4; temp++)
-                    {
+                    { //Currently has a bug where a single color can produce both a white and black pin in situations where it occurs multiple times
                         if (testCodeResult[temp] == testCodeGuess[currentResult])
                         {
                             testCodeResult[temp] = 0;
@@ -152,13 +151,15 @@ namespace Mastermind
                             correctColors++;
                         }
                     }
-                }
+                } 
+                // Ends the game if the correct sequence has been guessed
                 if (correctPins == 4)
                 {
                     gameOn = false;
                     labelInformation.Text = "You won! Want to try again?";
                 }
 
+                // Resets the "guess area" after a guess has been made.
                 Array.Clear(codeGuess, 0, codeGuess.Length);
                 buttonPinOne.BackColor = default(Color);
                 buttonPinOne.UseVisualStyleBackColor = true;
@@ -168,9 +169,11 @@ namespace Mastermind
                 buttonPinThree.UseVisualStyleBackColor = true;
                 buttonPinFour.BackColor = default(Color);
                 buttonPinFour.UseVisualStyleBackColor = true;
+                currentPin = 0;
 
                 guesses++;
 
+                // Ends the game if the sequence hasn't been guessed in twelve tries
                 if(guesses == 12)
                 {
                     gameOn = false;
@@ -179,6 +182,7 @@ namespace Mastermind
             }
         }
 
+        // Sets the currently selected "guess pin" to the color Red, and continues to the next pin if the guess isn't done
         private void buttonRed_Click(object sender, EventArgs e)
         {
             if (gameOn) 
@@ -194,6 +198,7 @@ namespace Mastermind
             }
         }
 
+        // Sets the currently selected "guess pin" to the color Yellow, and continues to the next pin if the guess isn't done
         private void buttonYellow_Click(object sender, EventArgs e)
         {
             if (gameOn)
@@ -209,6 +214,8 @@ namespace Mastermind
                 }
             }
         }
+
+        // Sets the currently selected "guess pin" to the color Green, and continues to the next pin if the guess isn't done
         private void buttonGreen_Click(object sender, EventArgs e)
         {
             if (gameOn)
@@ -225,6 +232,7 @@ namespace Mastermind
             }
         }
 
+        // Sets the currently selected "guess pin" to the color Blue, and continues to the next pin if the guess isn't done
         private void buttonBlue_Click(object sender, EventArgs e)
         {
             if (gameOn)
@@ -241,6 +249,7 @@ namespace Mastermind
             }
         }
 
+        // Sets the currently selected "guess pin" to the color White, and continues to the next pin if the guess isn't done
         private void buttonWhite_Click(object sender, EventArgs e)
         {
             if (gameOn)
@@ -257,6 +266,7 @@ namespace Mastermind
             }
         }
 
+        // Sets the currently selected "guess pin" to the color Black, and continues to the next pin if the guess isn't done
         private void buttonBlack_Click(object sender, EventArgs e)
         {
             if (gameOn)
@@ -273,6 +283,7 @@ namespace Mastermind
             }
         }
 
+        // Sets the first pin as the active one to have its color selected
         private void buttonPinOne_Click(object sender, EventArgs e)
         {
             if (gameOn)
@@ -281,6 +292,7 @@ namespace Mastermind
             }
         }
 
+        // Sets the second pin as the active one to have its color selected
         private void buttonPinTwo_Click(object sender, EventArgs e)
         {
             if (gameOn)
@@ -289,6 +301,7 @@ namespace Mastermind
             }
         }
 
+        // Sets the third pin as the active one to have its color selected
         private void buttonPinThree_Click(object sender, EventArgs e)
         {
             if (gameOn)
@@ -297,6 +310,7 @@ namespace Mastermind
             }
         }
 
+        // Sets the fourth pin as the active one to have its color selected
         private void buttonPinFour_Click(object sender, EventArgs e)
         {
             if (gameOn)
