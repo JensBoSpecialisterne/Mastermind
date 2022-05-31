@@ -126,7 +126,8 @@ namespace Mastermind
                         case 5: g.FillEllipse(brushWhite, guessesMatrix[guesses, column]); break;
                         case 6: g.FillEllipse(brushBlack, guessesMatrix[guesses, column]); break;
                     }
-                }
+                } // For every element in the guess, checks if it hasn't been seen in the code yet, and adds a white pin to the answer if it hasn't
+                  // Then checks whether the location is also the same, and "upgrades" the white pin to a black if it is
                 for (int counter = 0; counter < 4; counter++)
                 {
                     if (tempCodeCorrect.Contains(codeGuess[counter]))
