@@ -139,7 +139,7 @@ namespace Mastermind
                     {
                         correctPins++;
                     }
-                }
+                } // Draws an empty circle with a black border for every correct color. Then fills an empty circle for every correct location.
                 for (int results = 0; results < correctColors; results++)
                 {
                     g.DrawEllipse(penBlack, resultMatrix[guesses, results]);
