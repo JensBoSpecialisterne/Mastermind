@@ -65,15 +65,16 @@ namespace Mastermind
             codeCorrect[3] = rand.Next(1, 6);
 
             // To help debugging
+            /*
             codeCorrect[0] = 2;
             codeCorrect[1] = 2;
             codeCorrect[2] = 3;
             codeCorrect[3] = 3;
-
+            */
             labelInformation.Text = "";
 
             // To help debugging
-            labelInformation.Text = codeCorrect[0] + " " + codeCorrect[1] + " " + codeCorrect[2] + " " + codeCorrect[3];
+            // labelInformation.Text = codeCorrect[0] + " " + codeCorrect[1] + " " + codeCorrect[2] + " " + codeCorrect[3];
         }
 
         public Gamespace()
