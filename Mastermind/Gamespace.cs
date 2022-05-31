@@ -20,8 +20,6 @@ namespace Mastermind
         int guesses = 0;
         int[] codeCorrect = new int[4];
         int[] codeGuess = { 0, 0, 0, 0 };
-        int[] testCodeCorrect = new int[4];
-        int[] testCodeGuess = new int[4];
 
         Pen penBlack = new Pen(Color.Black);
         Pen penWhite = new Pen(Color.Black);
@@ -66,16 +64,16 @@ namespace Mastermind
             codeCorrect[2] = rand.Next(1, 6);
             codeCorrect[3] = rand.Next(1, 6);
 
-            /* // To help debugging
+            // To help debugging
             codeCorrect[0] = 2;
             codeCorrect[1] = 2;
             codeCorrect[2] = 3;
-            codeCorrect[3] = 2; */
+            codeCorrect[3] = 3;
 
             labelInformation.Text = "";
 
             // To help debugging
-            // labelInformation.Text = codeCorrect[0] + " " + codeCorrect[1] + " " + codeCorrect[2] + " " + codeCorrect[3];
+            labelInformation.Text = codeCorrect[0] + " " + codeCorrect[1] + " " + codeCorrect[2] + " " + codeCorrect[3];
         }
 
         public Gamespace()
@@ -104,15 +102,12 @@ namespace Mastermind
         {
             Graphics g = this.CreateGraphics();
 
-            testCodeCorrect[0] = codeCorrect[0];
-            testCodeCorrect[1] = codeCorrect[1];
-            testCodeCorrect[2] = codeCorrect[2];
-            testCodeCorrect[3] = codeCorrect[3];
+            List<int> tempCodeCorrect = new List<int>();
 
-            testCodeGuess[0] = codeGuess[0];
-            testCodeGuess[1] = codeGuess[1];
-            testCodeGuess[2] = codeGuess[2];
-            testCodeGuess[3] = codeGuess[3];
+            tempCodeCorrect.Add(codeCorrect[0]);
+            tempCodeCorrect.Add(codeCorrect[1]);
+            tempCodeCorrect.Add(codeCorrect[2]);
+            tempCodeCorrect.Add(codeCorrect[3]);
 
             int correctPins = 0;
             int correctColors = 0;
@@ -132,89 +127,17 @@ namespace Mastermind
                         case 6: g.FillEllipse(brushBlack, guessesMatrix[guesses, column]); break;
                     }
                 }
-                if (codeCorrect[0] == testCodeGuess[0])
+                for (int counter = 0; counter < 4; counter++)
                 {
-                    testCodeGuess[0] = 5;
-                    correctPins++;
-                    correctColors++;
-                }
-                else if (codeCorrect[0] == testCodeGuess[1] & !(codeCorrect[1] == testCodeGuess[1]))
-                {
-                    testCodeGuess[1] = 5;
-                    correctColors++;
-                }
-                else if (codeCorrect[0] == testCodeGuess[2] & !(codeCorrect[2] == testCodeGuess[2]))
-                {
-                    testCodeGuess[2] = 5;
-                    correctColors++;
-                }
-                else if (codeCorrect[0] == testCodeGuess[3] & !(codeCorrect[3] == testCodeGuess[3]))
-                {
-                    testCodeGuess[3] = 5;
-                    correctColors++;
-                }
-                if (codeCorrect[1] == testCodeGuess[1])
-                {
-                    testCodeGuess[1] = 5;
-                    correctPins++;
-                    correctColors++;
-                }
-                else if (codeCorrect[1] == testCodeGuess[0] & !(codeCorrect[0] == testCodeGuess[0]))
-                {
-                    testCodeGuess[0] = 5;
-                    correctColors++;
-                }
-                else if (codeCorrect[1] == testCodeGuess[2] & !(codeCorrect[2] == testCodeGuess[2]))
-                {
-                    testCodeGuess[2] = 5;
-                    correctColors++;
-                }
-                else if (codeCorrect[1] == testCodeGuess[3] & !(codeCorrect[3] == testCodeGuess[3]))
-                {
-                    testCodeGuess[3] = 5;
-                    correctColors++;
-                }
-                if (codeCorrect[2] == testCodeGuess[2])
-                {
-                    testCodeGuess[2] = 5;
-                    correctPins++;
-                    correctColors++;
-                }
-                else if (codeCorrect[2] == testCodeGuess[0] & !(codeCorrect[0] == testCodeGuess[0]))
-                {
-                    testCodeGuess[0] = 5;
-                    correctColors++;
-                }
-                else if (codeCorrect[2] == testCodeGuess[1] & !(codeCorrect[1] == testCodeGuess[1]))
-                {
-                    testCodeGuess[1] = 5;
-                    correctColors++;
-                }
-                else if (codeCorrect[2] == testCodeGuess[3] & !(codeCorrect[3] == testCodeGuess[3]))
-                {
-                    testCodeGuess[3] = 5;
-                    correctColors++;
-                }
-                if (codeCorrect[3] == testCodeGuess[3])
-                {
-                    testCodeGuess[2] = 5;
-                    correctPins++;
-                    correctColors++;
-                }
-                else if (codeCorrect[3] == testCodeGuess[0] & !(codeCorrect[0] == testCodeGuess[0]))
-                {
-                    testCodeGuess[0] = 5;
-                    correctColors++;
-                }
-                else if (codeCorrect[3] == testCodeGuess[1] & !(codeCorrect[1] == testCodeGuess[1]))
-                {
-                    testCodeGuess[1] = 5;
-                    correctColors++;
-                }
-                else if (codeCorrect[3] == testCodeGuess[2] & !(codeCorrect[2] == testCodeGuess[2]))
-                {
-                    testCodeGuess[2] = 5;
-                    correctColors++;
+                    if (tempCodeCorrect.Contains(codeGuess[counter]))
+                    {
+                        correctColors++;
+                        tempCodeCorrect.Remove(codeGuess[counter]);
+                    }
+                    if (codeGuess[counter] == codeCorrect[counter])
+                    {
+                        correctPins++;
+                    }
                 }
                 for (int results = 0; results < correctColors; results++)
                 {
