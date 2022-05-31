@@ -44,6 +44,9 @@
             this.buttonPinThree = new System.Windows.Forms.Button();
             this.buttonPinFour = new System.Windows.Forms.Button();
             this.labelInformation = new System.Windows.Forms.Label();
+            this.debugLabel1 = new System.Windows.Forms.Label();
+            this.debugLabel2 = new System.Windows.Forms.Label();
+            this.debugLabel3 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -205,12 +208,42 @@
             this.labelInformation.TabIndex = 15;
             this.labelInformation.Text = "Press \"New Game\" to start playing";
             // 
+            // debugLabel1
+            // 
+            this.debugLabel1.AutoSize = true;
+            this.debugLabel1.Location = new System.Drawing.Point(12, 227);
+            this.debugLabel1.Name = "debugLabel1";
+            this.debugLabel1.Size = new System.Drawing.Size(51, 20);
+            this.debugLabel1.TabIndex = 16;
+            this.debugLabel1.Text = "label1";
+            // 
+            // debugLabel2
+            // 
+            this.debugLabel2.AutoSize = true;
+            this.debugLabel2.Location = new System.Drawing.Point(12, 247);
+            this.debugLabel2.Name = "debugLabel2";
+            this.debugLabel2.Size = new System.Drawing.Size(51, 20);
+            this.debugLabel2.TabIndex = 17;
+            this.debugLabel2.Text = "label1";
+            // 
+            // debugLabel3
+            // 
+            this.debugLabel3.AutoSize = true;
+            this.debugLabel3.Location = new System.Drawing.Point(12, 267);
+            this.debugLabel3.Name = "debugLabel3";
+            this.debugLabel3.Size = new System.Drawing.Size(51, 20);
+            this.debugLabel3.TabIndex = 18;
+            this.debugLabel3.Text = "label1";
+            // 
             // Gamespace
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(534, 736);
+            this.Controls.Add(this.debugLabel3);
+            this.Controls.Add(this.debugLabel2);
+            this.Controls.Add(this.debugLabel1);
             this.Controls.Add(this.labelInformation);
             this.Controls.Add(this.buttonPinFour);
             this.Controls.Add(this.buttonPinThree);
@@ -257,6 +290,9 @@
         private System.Windows.Forms.Button buttonPinThree;
         private System.Windows.Forms.Button buttonPinFour;
         private System.Windows.Forms.Label labelInformation;
+        private System.Windows.Forms.Label debugLabel1;
+        private System.Windows.Forms.Label debugLabel2;
+        private System.Windows.Forms.Label debugLabel3;
     }
 }
 
