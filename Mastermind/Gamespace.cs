@@ -168,9 +168,10 @@ namespace Mastermind
                 currentPin = 0;
 
                 guesses++;
+                tempCodeCorrect.Clear(); // JUST in case.
 
                 // Ends the game if the sequence hasn't been guessed in twelve tries
-                if(guesses == 12)
+                if (guesses == 12)
                 {
                     gameOn = false;
                     labelInformation.Text = "You lost! Want to try again?";
