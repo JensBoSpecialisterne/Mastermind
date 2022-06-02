@@ -103,8 +103,9 @@
             this.buttonRed.Name = "buttonRed";
             this.buttonRed.Size = new System.Drawing.Size(45, 45);
             this.buttonRed.TabIndex = 5;
+            this.buttonRed.Tag = "1";
             this.buttonRed.UseVisualStyleBackColor = false;
-            this.buttonRed.Click += new System.EventHandler(this.buttonRed_Click);
+            this.buttonRed.Click += new System.EventHandler(this.buttonColor_Click);
             // 
             // buttonYellow
             // 
@@ -113,8 +114,9 @@
             this.buttonYellow.Name = "buttonYellow";
             this.buttonYellow.Size = new System.Drawing.Size(45, 45);
             this.buttonYellow.TabIndex = 6;
+            this.buttonYellow.Tag = "2";
             this.buttonYellow.UseVisualStyleBackColor = false;
-            this.buttonYellow.Click += new System.EventHandler(this.buttonYellow_Click);
+            this.buttonYellow.Click += new System.EventHandler(this.buttonColor_Click);
             // 
             // buttonGreen
             // 
@@ -123,8 +125,9 @@
             this.buttonGreen.Name = "buttonGreen";
             this.buttonGreen.Size = new System.Drawing.Size(45, 45);
             this.buttonGreen.TabIndex = 7;
+            this.buttonGreen.Tag = "3";
             this.buttonGreen.UseVisualStyleBackColor = false;
-            this.buttonGreen.Click += new System.EventHandler(this.buttonGreen_Click);
+            this.buttonGreen.Click += new System.EventHandler(this.buttonColor_Click);
             // 
             // buttonBlue
             // 
@@ -133,8 +136,9 @@
             this.buttonBlue.Name = "buttonBlue";
             this.buttonBlue.Size = new System.Drawing.Size(45, 45);
             this.buttonBlue.TabIndex = 8;
+            this.buttonBlue.Tag = "4";
             this.buttonBlue.UseVisualStyleBackColor = false;
-            this.buttonBlue.Click += new System.EventHandler(this.buttonBlue_Click);
+            this.buttonBlue.Click += new System.EventHandler(this.buttonColor_Click);
             // 
             // buttonWhite
             // 
@@ -143,8 +147,9 @@
             this.buttonWhite.Name = "buttonWhite";
             this.buttonWhite.Size = new System.Drawing.Size(45, 45);
             this.buttonWhite.TabIndex = 9;
+            this.buttonWhite.Tag = "5";
             this.buttonWhite.UseVisualStyleBackColor = false;
-            this.buttonWhite.Click += new System.EventHandler(this.buttonWhite_Click);
+            this.buttonWhite.Click += new System.EventHandler(this.buttonColor_Click);
             // 
             // buttonBlack
             // 
@@ -153,8 +158,9 @@
             this.buttonBlack.Name = "buttonBlack";
             this.buttonBlack.Size = new System.Drawing.Size(45, 45);
             this.buttonBlack.TabIndex = 10;
+            this.buttonBlack.Tag = "6";
             this.buttonBlack.UseVisualStyleBackColor = false;
-            this.buttonBlack.Click += new System.EventHandler(this.buttonBlack_Click);
+            this.buttonBlack.Click += new System.EventHandler(this.buttonColor_Click);
             // 
             // buttonPinOne
             // 
@@ -163,8 +169,9 @@
             this.buttonPinOne.Name = "buttonPinOne";
             this.buttonPinOne.Size = new System.Drawing.Size(40, 40);
             this.buttonPinOne.TabIndex = 11;
+            this.buttonPinOne.Tag = "0";
             this.buttonPinOne.UseVisualStyleBackColor = true;
-            this.buttonPinOne.Click += new System.EventHandler(this.buttonPinOne_Click);
+            this.buttonPinOne.Click += new System.EventHandler(this.buttonPin_Click);
             // 
             // buttonPinTwo
             // 
@@ -173,8 +180,9 @@
             this.buttonPinTwo.Name = "buttonPinTwo";
             this.buttonPinTwo.Size = new System.Drawing.Size(40, 40);
             this.buttonPinTwo.TabIndex = 12;
+            this.buttonPinTwo.Tag = "1";
             this.buttonPinTwo.UseVisualStyleBackColor = true;
-            this.buttonPinTwo.Click += new System.EventHandler(this.buttonPinTwo_Click);
+            this.buttonPinTwo.Click += new System.EventHandler(this.buttonPin_Click);
             // 
             // buttonPinThree
             // 
@@ -183,8 +191,9 @@
             this.buttonPinThree.Name = "buttonPinThree";
             this.buttonPinThree.Size = new System.Drawing.Size(40, 40);
             this.buttonPinThree.TabIndex = 13;
+            this.buttonPinThree.Tag = "2";
             this.buttonPinThree.UseVisualStyleBackColor = true;
-            this.buttonPinThree.Click += new System.EventHandler(this.buttonPinThree_Click);
+            this.buttonPinThree.Click += new System.EventHandler(this.buttonPin_Click);
             // 
             // buttonPinFour
             // 
@@ -193,8 +202,9 @@
             this.buttonPinFour.Name = "buttonPinFour";
             this.buttonPinFour.Size = new System.Drawing.Size(40, 40);
             this.buttonPinFour.TabIndex = 14;
+            this.buttonPinFour.Tag = "3";
             this.buttonPinFour.UseVisualStyleBackColor = true;
-            this.buttonPinFour.Click += new System.EventHandler(this.buttonPinFour_Click);
+            this.buttonPinFour.Click += new System.EventHandler(this.buttonPin_Click);
             // 
             // labelInformation
             // 

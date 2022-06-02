@@ -181,12 +181,22 @@ namespace Mastermind
         }
 
         // Sets the currently selected "guess pin" to the color Red, and continues to the next pin if the guess isn't done
-        private void buttonRed_Click(object sender, EventArgs e)
+        private void buttonColor_Click(object sender, EventArgs e)
         {
             if (gameOn) 
-            { 
-                codeGuess[currentPin] = 1;
+            {
+                int buttonColor = int.Parse((sender as Button).Tag as String);
+                codeGuess[currentPin] = buttonColor;
                 Color color = Color.Red;
+                switch (buttonColor)
+                {
+                    case 1: color = Color.Red; break;
+                    case 2: color = Color.Yellow; break;
+                    case 3: color = Color.Green; break;
+                    case 4: color = Color.Blue; break;
+                    case 5: color = Color.White; break;
+                    case 6: color = Color.Black; break;
+                }
                 switch (currentPin) {
                   case 0: buttonPinOne.BackColor = color; currentPin++; break;
                   case 1: buttonPinTwo.BackColor = color; currentPin++; break;
@@ -196,124 +206,13 @@ namespace Mastermind
             }
         }
 
-        // Sets the currently selected "guess pin" to the color Yellow, and continues to the next pin if the guess isn't done
-        private void buttonYellow_Click(object sender, EventArgs e)
-        {
-            if (gameOn)
-            {
-                codeGuess[currentPin] = 2;
-                Color color = Color.Yellow;
-                switch (currentPin)
-                {
-                    case 0: buttonPinOne.BackColor = color; currentPin++; break;
-                    case 1: buttonPinTwo.BackColor = color; currentPin++; break;
-                    case 2: buttonPinThree.BackColor = color; currentPin++; break;
-                    case 3: buttonPinFour.BackColor = color; break;
-                }
-            }
-        }
-
-        // Sets the currently selected "guess pin" to the color Green, and continues to the next pin if the guess isn't done
-        private void buttonGreen_Click(object sender, EventArgs e)
-        {
-            if (gameOn)
-            {
-                codeGuess[currentPin] = 3;
-                Color color = Color.Green;
-                switch (currentPin)
-                {
-                    case 0: buttonPinOne.BackColor = color; currentPin++; break;
-                    case 1: buttonPinTwo.BackColor = color; currentPin++; break;
-                    case 2: buttonPinThree.BackColor = color; currentPin++; break;
-                    case 3: buttonPinFour.BackColor = color; break;
-                }
-            }
-        }
-
-        // Sets the currently selected "guess pin" to the color Blue, and continues to the next pin if the guess isn't done
-        private void buttonBlue_Click(object sender, EventArgs e)
-        {
-            if (gameOn)
-            {
-                codeGuess[currentPin] = 4;
-                Color color = Color.Blue;
-                switch (currentPin)
-                {
-                    case 0: buttonPinOne.BackColor = color; currentPin++; break;
-                    case 1: buttonPinTwo.BackColor = color; currentPin++; break;
-                    case 2: buttonPinThree.BackColor = color; currentPin++; break;
-                    case 3: buttonPinFour.BackColor = color; break;
-                }
-            }
-        }
-
-        // Sets the currently selected "guess pin" to the color White, and continues to the next pin if the guess isn't done
-        private void buttonWhite_Click(object sender, EventArgs e)
-        {
-            if (gameOn)
-            {
-                codeGuess[currentPin] = 5;
-                Color color = Color.White;
-                switch (currentPin)
-                {
-                    case 0: buttonPinOne.BackColor = color; currentPin++; break;
-                    case 1: buttonPinTwo.BackColor = color; currentPin++; break;
-                    case 2: buttonPinThree.BackColor = color; currentPin++; break;
-                    case 3: buttonPinFour.BackColor = color; break;
-                }
-            }
-        }
-
-        // Sets the currently selected "guess pin" to the color Black, and continues to the next pin if the guess isn't done
-        private void buttonBlack_Click(object sender, EventArgs e)
-        {
-            if (gameOn)
-            {
-                codeGuess[currentPin] = 6;
-                Color color = Color.Black;
-                switch (currentPin)
-                {
-                    case 0: buttonPinOne.BackColor = color; currentPin++; break;
-                    case 1: buttonPinTwo.BackColor = color; currentPin++; break;
-                    case 2: buttonPinThree.BackColor = color; currentPin++; break;
-                    case 3: buttonPinFour.BackColor = color; break;
-                }
-            }
-        }
-
         // Sets the first pin as the active one to have its color selected
-        private void buttonPinOne_Click(object sender, EventArgs e)
+        private void buttonPin_Click(object sender, EventArgs e)
         {
             if (gameOn)
             {
-                currentPin = 0;
-            }
-        }
-
-        // Sets the second pin as the active one to have its color selected
-        private void buttonPinTwo_Click(object sender, EventArgs e)
-        {
-            if (gameOn)
-            {
-                currentPin = 1;
-            }
-        }
-
-        // Sets the third pin as the active one to have its color selected
-        private void buttonPinThree_Click(object sender, EventArgs e)
-        {
-            if (gameOn)
-            {
-                currentPin = 2;
-            }
-        }
-
-        // Sets the fourth pin as the active one to have its color selected
-        private void buttonPinFour_Click(object sender, EventArgs e)
-        {
-            if (gameOn)
-            {
-                currentPin = 3;
+                int pinNumber = int.Parse((sender as Button).Tag as String);
+                currentPin = pinNumber;
             }
         }
     }
